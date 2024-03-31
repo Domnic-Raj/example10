@@ -10,6 +10,6 @@ jobs:
   - name: read
     run: |
      > test.txt
-     echo " team : ${{ secrets.team }} " > test.txt
-     echo " count : ${{ secrets.count }} " >> test.txt
-     echo " city : ${{ secrets.city }}" >> test.txt
+     echo " name : ${{ secrets.name }} " > test.txt
+     echo " age : ${{ secrets.age }} " >> test.txt
+     echo " email : ${{ secrets.email }}" >> test.txt
