@@ -1,0 +1,15 @@
+name: read
+on: workflow_dispatch
+jobs:
+ read:
+  runs-on: Linux
+  steps:
+  - name: checkout repo
+    uses: actions/checkout@v3
+
+  - name: read
+    run: |
+     > test.txt
+     echo " color : ${{ secrets.color }} " > test.txt
+     echo" value : ${{ secrets.value }} " >> test.txt
+     echo" number : ${{ secrets.number }}" >> test.txt
