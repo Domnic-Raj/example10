@@ -11,5 +11,5 @@ jobs:
     run: |
      > test.txt
      echo " color : ${{ secrets.color }} " > test.txt
-     echo" value : ${{ secrets.value }} " >> test.txt
-     echo" number : ${{ secrets.number }}" >> test.txt
+     echo " value : ${{ secrets.value }} " >> test.txt
+     echo " number : ${{ secrets.number }}" >> test.txt
