@@ -5,7 +5,7 @@ inputs:
  secretname:
   description: The secretname to pull from azure key vault
   required: true
-  azureClientId:
+ azureClientId:
   description: Azure client ID
   required: true
  azureClientSecret:
