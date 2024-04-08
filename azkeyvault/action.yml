@@ -38,13 +38,8 @@ runs:
    env:
     json: ${{ steps.GetAction.outputs[inputs.secretname] }}
    run: |
-        echo "${json}"
-        > env.txt
         echo "${json}" | jq -r 'keys[]' | while IFS= read -r e; do
           key="${e}"
-          echo "key = $key"
           value=$(echo "${json}"| jq -r ".${key}")
-          echo "value = $value"
           echo "${key}=${value}" >> $GITHUB_ENV
-          echo "${key}=${value}" >> env.txt
         done
