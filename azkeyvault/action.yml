@@ -1,0 +1,38 @@
+name: azkeyvault
+description: |
+  Action to pull secrets from azure key vault and convert into vars
+inputs:
+ secretname:
+  description: The secretname to pull from azure key vault
+  required: true
+runs:
+ using: composite
+ steps:
+ - name: Login to Azure
+   uses: Azure/login@v1
+   with:
+    creds: '{"clientId":"${{ secrets.AZURE_CLIENT_ID }}","clientSecret":"${{ secrets.AZURE_SECRET_ID }}","subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.AZURE_TENANT_ID }}"}'
+
+ - name: Get Secrets
+   uses: Azure/get-keyvault-secrets@v1
+   with:
+    keyvault: "fincentric-keyvault"
+    secrets: '${{inputs.secretname}}'
+   id: GetAction  
+
+ - name: convert-to-vars
+   id: convert-to-vars
+   shell: bash
+   env:
+    json: ${{ steps.GetAction.outputs[inputs.secretname] }}
+   run: |
+        echo "${json}"
+        > env.txt
+        echo "${json}" | jq -r 'keys[]' | while IFS= read -r e; do
+          key="${e}"
+          echo "key = $key"
+          value=$(echo "${json}"| jq -r ".${key}")
+          echo "value = $value"
+          echo "${key}=${value}" >> $GITHUB_ENV
+          echo "${key}=${value}" >> env.txt
+        done
