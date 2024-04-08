@@ -6,17 +6,17 @@ inputs:
   description: The secretname to pull from azure key vault
   required: true
  azureClientId:
-    description: Azure client ID
-    required: true
-  azureClientSecret:
-    description: Azure client secret
-    required: true
-  azureSubscriptionId:
-    description: Azure subscription ID
-    required: true
-  azureTenantId:
-    description: Azure tenant ID
-    required: true
+  description: Azure client ID
+  required: true
+ azureClientSecret:
+  description: Azure client secret
+  required: true
+ azureSubscriptionId:
+  description: Azure subscription ID
+  required: true
+ azureTenantId:
+  description: Azure tenant ID
+  required: true
 runs:
  using: composite
  steps:
