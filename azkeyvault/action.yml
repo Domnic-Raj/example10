@@ -23,7 +23,7 @@ runs:
  - name: Login to Azure
    uses: Azure/login@v1
    with:
-    creds: '{"clientId":"${{ inputs.azureClientId }}","clientSecret":"${{ inputs.azureClientSecret }}","subscriptionId":"${{ inputs.azureSubscriptionId }}","tenantId":"${{ inputs.azureTenantId }}"}' 
+    creds: '{"clientId":'${{ inputs.azureClientId }}',"clientSecret":'${{ inputs.azureClientSecret }}',"subscriptionId":'${{ inputs.azureSubscriptionId }}',"tenantId":'${{ inputs.azureTenantId }}'}' 
 
  - name: Get Secrets
    uses: Azure/get-keyvault-secrets@v1
